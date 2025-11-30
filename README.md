@@ -34,6 +34,7 @@ gdown --folder "https://drive.google.com/drive/folders/15lCDsyjXyodQTEwlWiUExA-X
 ## 3. 学習の実行
 
 ```bash
+wandb login
 python learning.py
 ```
 

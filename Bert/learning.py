@@ -12,7 +12,7 @@ import os
 MODEL_NAME = "tohoku-nlp/bert-base-japanese-v3"
 
 # データパスの設定（環境変数で上書き可能）
-DATA_PATH = os.getenv("AOZORA_DATA_PATH", "./data/aozora_tokenized")
+DATA_PATH = os.getenv("AOZORA_DATA_PATH", "./data")
 
 # 1. tokenizer & model ロード
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
@@ -34,7 +34,7 @@ def main():
         output_dir="./bert_japanese_v3_continual",
         overwrite_output_dir=True,
         num_train_epochs=1,                     # ★ epoch = 1
-        per_device_train_batch_size=16,         # Colab GPU 安全設定
+        per_device_train_batch_size=16,    
         per_device_eval_batch_size=16,
         learning_rate=1e-5,
         weight_decay=0.01,
@@ -45,7 +45,8 @@ def main():
         eval_steps=2000,
         report_to=["wandb"],
         save_total_limit=1,                     # 保存少なくして軽量化
-        fp16=True,                              # Colab GPU (T4) なら True 推奨
+        fp16=False,
+        bf16=True                
     )
 
     # 7. Trainer

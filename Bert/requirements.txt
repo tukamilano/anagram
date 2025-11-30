@@ -3,3 +3,6 @@ transformers
 wandb
 torch
 sentencepiece
+fugashi
+unidic-lite
+accelerate
